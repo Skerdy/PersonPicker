@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -20,7 +21,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.github.florent37.viewanimator.AnimationListener;
 import com.github.florent37.viewanimator.ViewAnimator;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,6 +50,8 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
     private PersonAdapter personAdapter;
     private PersonClickListener personClickListener;
     private int width = 0;
+    private Picasso picasso;
+    private CardView cardView;
 
 
     public PersonPicker(@NonNull Context context, ArrayList<Person> persons, ViewGroup viewGroup, PersonClickListener personClickListener) {
@@ -57,6 +62,7 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
         this.layoutInflater  = LayoutInflater.from(context);
         this.viewGroup = viewGroup;
         this.personClickListener = personClickListener;
+        picasso = Picasso.get();
         count = 0;
         view = layoutInflater.inflate(R.layout.person_picker,viewGroup,false);
         toogle_remainder = layoutInflater.inflate(R.layout.toogle, viewGroup, false);
@@ -67,7 +73,9 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
         toogle_remainder.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View vieww) {
-                ViewAnimator.animate(toogle_remainder).fadeOut().duration(1000).start();
+                view.setVisibility(VISIBLE);
+                toogle_remainder.setVisibility(GONE);
+               // ViewAnimator.animate(toogle_remainder).fadeOut().duration(1000).start();
                 ViewAnimator.animate(view).translationX(0).accelerate().duration(500).
                         start();
             }
@@ -100,26 +108,51 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-
-
         toogle = view.findViewById(R.id.toogle);
-
-        toogle.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View vieww) {
-               // ViewAnimator.animate(view).bounceOut().start();
-                toogle_remainder.setVisibility(VISIBLE);
-                ViewAnimator.animate(toogle_remainder).fadeIn().duration(1000).start();
-                ViewAnimator.animate(view).translationX(-width).accelerate().duration(500).
-                       start();
-            }
-        });
+        cardView = view.findViewById(R.id.cardview);
         imageView = view.findViewById(R.id.imageview);
         emer = view.findViewById(R.id.emer);
         mbiemer = view.findViewById(R.id.mbiemer);
 
 
-        if(bitmap!=null){
+        picasso.load(persons.get(selectedPersonId).getProfile_image_url()).into(imageView);
+        emer.setText(persons.get(selectedPersonId).getName());
+        mbiemer.setText(persons.get(selectedPersonId).getSurname());
+
+        imageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Skerdi", "U shtyp fotoja");
+                materialDialog.show();
+            }
+        });
+
+        cardView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("Skerdi", "U shtyp cardview");
+                materialDialog.show();
+            }
+        });
+
+        toogle.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View vieww) {
+                // ViewAnimator.animate(view).bounceOut().start();
+                toogle_remainder.setVisibility(VISIBLE);
+                ViewAnimator.animate(toogle_remainder).fadeIn().duration(1000).start();
+                ViewAnimator.animate(view).translationX(-width).accelerate().duration(500).
+                        start().onStop(new AnimationListener.Stop() {
+                    @Override
+                    public void onStop() {
+                        view.setVisibility(INVISIBLE);
+                    }
+                });
+
+            }
+        });
+
+    /*    if(bitmap!=null){
             Log.d("Skerdi", "Po vizatohet imazhi");
             Paint paint = new Paint();
             paint.setAntiAlias(true);
@@ -142,7 +175,8 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
         }
         else {
             if(persons.get(selectedPersonId).getProfile_image_url()!=null){
-                new GetBitmapsAsync(this).execute(persons.get(selectedPersonId).getProfile_image_url());
+               // new GetBitmapsAsync(this).execute(persons.get(selectedPersonId).getProfile_image_url());
+
             }
             Log.d("Skerdi", "Po vizatohet teksti");
             Paint paint = new Paint();
@@ -154,14 +188,14 @@ public class PersonPicker extends View implements BitmapDownloadAssistant, Perso
             paint.setTextSize(20);
             canvas.drawText("There is no image", 100, 250, paint);
 
-        }
+        }*/
     }
 
     @Override
     public void onBitmapDownloaded(Bitmap bitmap) {
-        this.bitmap = bitmap;
+        /*this.bitmap = bitmap;
         imageView.setImageBitmap(bitmap);
-        invalidate();
+        invalidate();*/
     }
 
     @Override

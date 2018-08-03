@@ -29,6 +29,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:textColor="@android:color/black"
                 android:text="Skerdi"/>
 
@@ -36,6 +37,7 @@
                 android:id="@+id/surname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="18sp"
                 android:textColor="@android:color/black"
                 android:text="Gurabardhi"/>
         </LinearLayout>

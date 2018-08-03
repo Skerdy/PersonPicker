@@ -7,7 +7,5 @@ import android.graphics.Bitmap;
  */
 
 public interface BitmapDownloadAssistant {
-
     void onBitmapDownloaded(Bitmap bitmap);
-
 }

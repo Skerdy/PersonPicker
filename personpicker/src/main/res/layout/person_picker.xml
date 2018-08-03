@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/cardview"
     android:layout_height="80dp"
     android:layout_alignParentBottom="true"
-    android:layout_margin="5dp"
+    android:layout_margin="10dp"
     android:elevation="4dp"
     >
 
@@ -16,40 +17,40 @@
     <ImageView
         android:id="@+id/toogle"
         android:layout_width="wrap_content"
-        android:layout_margin="20dp"
-        android:padding="10dp"
+        android:padding="20dp"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@android:drawable/arrow_up_float"/>
+        android:src="@drawable/ic_icon_left_arrow"/>
 
     <ImageView
         android:id="@+id/imageview"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignEnd="@+id/toogle"
-        android:layout_marginLeft="10dp"
         android:layout_marginRight="20dp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/emer"
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"
-            android:text=""/>
-
-        <TextView
-            android:id="@+id/mbiemer"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"
-            android:text=""/>
+            android:textSize="18sp"
+            android:text="Jashar"/>
+
+        <TextView
+            android:id="@+id/mbiemer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:text="Xhika"/>
     </LinearLayout>
 
     </LinearLayout>

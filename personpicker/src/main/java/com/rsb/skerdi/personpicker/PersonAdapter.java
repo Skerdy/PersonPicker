@@ -41,7 +41,7 @@ public class PersonAdapter extends RecyclerView.Adapter<PersonAdapter.ViewHolder
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.emri.setText( persons.get(position).getName());
         holder.mbiemri.setText(persons.get(position).getSurname());
-        Picasso.get().load(persons.get(position).getProfile_image_url()).into(holder.imageView);
+        Picasso.get().load(persons.get(position).getProfile_image_url()).fit().into(holder.imageView);
         holder.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
