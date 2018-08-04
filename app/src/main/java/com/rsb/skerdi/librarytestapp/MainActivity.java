@@ -3,10 +3,13 @@ package com.rsb.skerdi.librarytestapp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.rsb.skerdi.personpicker.DragDropFunctionality.SDragListener;
 import com.rsb.skerdi.personpicker.Person;
 import com.rsb.skerdi.personpicker.PersonClickListener;
 import com.rsb.skerdi.personpicker.PersonPicker;
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,"Clicked position " + position, Toast.LENGTH_LONG).show();
             }
         });
+        personPicker.setToogleDynamic(true);
         frameLayout.addView(personPicker);
+
     }
 }
