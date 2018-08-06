@@ -31,17 +31,20 @@ public class MainActivity extends AppCompatActivity {
 
         persons = new ArrayList<>();
         persons.add(new Person("Skerdi", "Gurabardhi", "https://z-p3-scontent.fath5-1.fna.fbcdn.net/v/t1.0-0/p370x247/16681667_1378333725550492_7645852226125849371_n.jpg?_nc_cat=0&oh=e0e884b54e438cda7dc922153e016027&oe=5BC7ADDD"));
-        persons.add(new Person("Jashar", "Xhika", "https://z-p3-scontent.fath5-1.fna.fbcdn.net/v/t1.0-9/15203404_1331820053535824_6544001316368202859_n.jpg?_nc_cat=0&oh=8e3c09c64ff0539fb32c830351cb33d4&oe=5C02B40E"));
-        persons.add(new Person("Luan", "Gurabardhi", "https://z-p3-scontent.fath5-1.fna.fbcdn.net/v/t1.0-9/29598116_1419569344838305_3586080690766352165_n.jpg?_nc_cat=0&oh=0589bd798c83f89ae49789c47909e0f8&oe=5C0F0886"));
-
+        persons.add(new Person("Mark", "Zuckerberg", "https://scontent.ftia5-1.fna.fbcdn.net/v/t34.0-12/16176889_112685309244626_578204711_n.jpg?_nc_cat=0&oh=2994308a4c27c065cd5c2d5b4ede8f56&oe=5B6A7928"));
+        persons.add(new Person("Bill", "Gates", "https://scontent.ftia5-1.fna.fbcdn.net/v/t1.0-9/23473074_10155031875776961_8482140412038626648_n.jpg?_nc_cat=0&oh=dca693e31d614b03d2a8a8f1c724f52d&oe=5C064B06"));
+        persons.add(new Person("Steve", "Jobs", "https://scontent.ftia5-1.fna.fbcdn.net/v/t1.0-9/380250_308540849159158_2094417307_n.jpg?_nc_cat=0&oh=84c2dae64d74f501407c8c5b5daa0f3f&oe=5C0BBB31"));
+        persons.add(new Person("Elon", "Musk", "https://scontent.ftia5-1.fna.fbcdn.net/v/t1.0-9/36650939_117467132499850_5479383082823843840_n.jpg?_nc_cat=0&oh=901dc5415f5f6701a7b2bc6892818011&oe=5C048B43"));
+        persons.add(new Person("Mia", "Khalifa", "https://scontent.ftia5-1.fna.fbcdn.net/v/t1.0-9/27972544_240766439798196_1114524023250093741_n.jpg?_nc_cat=0&oh=a65f8eb1f375c8ea8b8788c34a5fba17&oe=5C108913"));
 
         PersonPicker personPicker = new PersonPicker(this, persons, frameLayout, new PersonClickListener() {
+
             @Override
             public void onPersonClicked(int position) {
                 Toast.makeText(MainActivity.this,"Clicked position " + position, Toast.LENGTH_LONG).show();
             }
         });
-        personPicker.setToogleDynamic(true);
+        personPicker.setToogleDynamic(false);
         frameLayout.addView(personPicker);
 
     }
